@@ -5,7 +5,7 @@ Appli Android perso pour planifier course à pied, muscu/renfo et courses offici
 - Web : Vite (`src/`, `index.html`) — `npm run dev` pour travailler dans le navigateur.
 - Android : Capacitor 8 (`android/`).
 - Données : sur le téléphone ; synchro Firebase dès que `src/firebase-config.js` est rempli.
-- APK : compilé par GitHub Actions à chaque push sur `main` (onglet **Releases** → `Allure.apk`).
+- APK : compilé par GitHub Actions à chaque nouveau tag `v*` (`git tag v1.0.1 && git push origin v1.0.1`), puis onglet **Releases** → `Allure.apk`.
 
 ## Récupérer le projet dans WSL
 

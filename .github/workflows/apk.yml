@@ -2,8 +2,7 @@ name: APK Android
 
 on:
   push:
-    branches: [main]
-  workflow_dispatch: {}
+    tags: ['v*']
 
 permissions:
   contents: write
@@ -27,14 +26,15 @@ jobs:
         run: npm ci && npm run build && npx cap sync android
       - name: Build APK
         working-directory: android
+        env:
+          VERSION_NAME: ${{ github.ref_name }}
         run: chmod +x gradlew && ./gradlew assembleRelease --no-daemon
       - name: Rename
         run: cp android/app/build/outputs/apk/release/app-release.apk Allure.apk
       - name: Release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: v1.0.${{ github.run_number }}
-          name: Allure 1.0.${{ github.run_number }}
+          name: Allure ${{ github.ref_name }}
           body: "APK à installer sur Android : télécharge **Allure.apk** ci-dessous."
           files: Allure.apk
           make_latest: true

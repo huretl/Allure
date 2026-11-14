@@ -15,9 +15,9 @@ Projet démarré dans une conversation claude.ai le 14/11/2026, puis repris ici.
 
 ## Compilation de l'APK
 
-- **GitHub Actions** (`.github/workflows/apk.yml`), à chaque push sur `main` : Node 22, Java 21 (Temurin), Android SDK, puis `assembleRelease`. L'APK est publié en **Release** `v1.0.<run>` sous le nom `Allure.apk`. Thomas le télécharge depuis son téléphone.
+- **GitHub Actions** (`.github/workflows/apk.yml`), à chaque **tag `v*` poussé** (ex. `git tag v1.0.1 && git push origin v1.0.1`) : Node 22, Java 21 (Temurin), Android SDK, puis `assembleRelease`. L'APK est publié en **Release** du nom du tag, sous le nom `Allure.apk`. Un push sur `main` seul ne compile rien. Thomas le télécharge depuis son téléphone.
 - Inutile de compiler en local (pas besoin d'Android SDK dans WSL), sauf demande explicite.
-- `versionCode` = `GITHUB_RUN_NUMBER`, donc chaque build s'installe par-dessus le précédent.
+- `versionName` = le tag sans le `v`. `versionCode` = `GITHUB_RUN_NUMBER`, donc chaque build s'installe par-dessus le précédent.
 - **Signature** : `android/app/allure.keystore` + `android/app/keystore.properties` sont **commités volontairement** (dépôt privé, usage perso). Même clé pour toutes les versions, sinon les mises à jour ne s'installent pas. **Ne jamais régénérer ni supprimer.**
 
 ## Fonctionnalités actuelles (v1)
@@ -101,5 +101,5 @@ Un seul fichier, organisé en sections :
 ## Façon de travailler avec Thomas
 
 - Il répond en français, de façon directe. Il préfère qu'on avance plutôt qu'une longue liste d'options.
-- Commits en français. Pousser sur `main` déclenche une release APK : grouper les changements plutôt que pousser chaque petite modif.
+- Commits en français. Une release APK ne part que sur un tag `v*` : ne créer et pousser un tag que quand Thomas le demande.
 - Tester dans le navigateur (`npm run dev`) avant de pousser. Ne pas casser le reste de son environnement WSL (il y a aussi des projets pro sous `/var/www/apps`).
