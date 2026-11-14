@@ -1,0 +1,10 @@
+{
+  "appId": "fr.thomas.allure",
+  "appName": "Allure",
+  "webDir": "www",
+  "android": { "backgroundColor": "#0B0C0D" },
+  "plugins": {
+    "SystemBars": { "insetsHandling": "css", "initialViewportFitValueHint": "cover" },
+    "LocalNotifications": { "smallIcon": "ic_stat_allure", "iconColor": "#D8F547" }
+  }
+}
