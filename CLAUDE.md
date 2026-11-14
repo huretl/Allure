@@ -15,7 +15,7 @@ Projet démarré dans une conversation claude.ai le 14/11/2026, puis repris ici.
 
 ## Compilation de l'APK
 
-- **GitHub Actions** (`.github/workflows/apk.yml`), à chaque **tag `v*` poussé** (ex. `git tag v1.0.1 && git push origin v1.0.1`) : Node 22, Java 21 (Temurin), Android SDK, puis `assembleRelease`. L'APK est publié en **Release** du nom du tag, sous le nom `Allure.apk`. Un push sur `main` seul ne compile rien. Thomas le télécharge depuis son téléphone.
+- **GitHub Actions** (`.github/workflows/apk.yml`), à chaque **tag `v*` poussé** (ex. `git tag v1.0.1 && git push origin v1.0.1`) : Node 22, Java 21 (Temurin), Android SDK préinstallé sur le runner (pas d'action `setup-android`, elle échoue), puis `assembleRelease`. L'APK est publié en **Release** du nom du tag, sous le nom `Allure.apk`. Un push sur `main` seul ne compile rien. Thomas le télécharge depuis son téléphone.
 - Inutile de compiler en local (pas besoin d'Android SDK dans WSL), sauf demande explicite.
 - `versionName` = le tag sans le `v`. `versionCode` = `GITHUB_RUN_NUMBER`, donc chaque build s'installe par-dessus le précédent.
 - **Signature** : `android/app/allure.keystore` + `android/app/keystore.properties` sont **commités volontairement** (dépôt privé, usage perso). Même clé pour toutes les versions, sinon les mises à jour ne s'installent pas. **Ne jamais régénérer ni supprimer.**
